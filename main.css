@@ -1,0 +1,74 @@
+
+
+
+#main_ui{
+	width:500px;
+	height: 575px;
+	border:1px solid #E0E0E0;
+	position: relative;
+	margin: 80px auto;
+	background-color: #FBF8F0;
+}
+
+
+#main_ui_cell{
+	background-color: #B9B2A8;
+	width: 450px;
+	height: 450px;
+	margin: 0 auto;
+	border-radius: 8px;
+}
+
+#main_title{
+	font-size: 20px;
+	margin: 10px auto;
+	width: 140px;
+	height: 30px;
+	line-height: 30px;
+	color: #FFF;
+	background-color: #FF8402;
+	text-align: center;
+	border-radius: 4px;
+	font-family: 'consolas';
+}
+
+#score{
+	width: 130px;
+	/*border: 1px solid red;*/
+	margin-left: 340px;
+	margin-bottom: 10px;
+}
+
+#score img{
+	width: 18px;
+	height: 18px;
+}
+
+.bk_cell{
+	width: 100px;
+	height: 100px;
+	background-color: #CCC0B4;
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	/*border:1px solid red;*/
+	border-radius: 5px;
+}
+
+
+#play_game{
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 3px;
+	background-color: #4183C4;
+	margin:10px auto;
+	color: #FFF;
+	font-weight: bold;
+}
+
+#play_game:hover{
+	text-decoration: none;
+	cursor: pointer;
+}
