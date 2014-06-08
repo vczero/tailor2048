@@ -1,6 +1,4 @@
 
-
-
 #main_ui{
 	width:500px;
 	height: 578px;
@@ -79,3 +77,10 @@
 	text-decoration: none;
 	cursor: pointer;
 }
+
+
+/*.fr_cell{
+	width: 100px;
+	height: 100px;
+	border:1px solid red;
+}*/
