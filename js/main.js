@@ -11,6 +11,8 @@ $(function(){
 var bk_table = [];
 var myScore = 0;
 function play(){
+	myScore = 0;
+	$('#my_score').text(0);
 	createUI();
 	initNumber(bk_table);
 }
@@ -33,33 +35,28 @@ function createUI(){
 function initNumber(bk_table){
 	var xy1 = createPosition(bk_table);
 	var number1 = createNumber();
-
-	var xy2 = createPosition(bk_table);
-	var number2 = createNumber();
-
+	//产生一个数
 	bk_table[xy1.x][xy1.y] = number1;
-	bk_table[xy2.x][xy2.y] = number2;
+	
+	// var xy2 = createPosition(bk_table);
+	// var number2 = createNumber();
+	// bk_table[xy2.x][xy2.y] = number2;
 
 	showNumber(bk_table);
 }
 
 
-function moveNumber(){
-
-}
-
-//------------------------------------------------
 function createNumber(){
 	return Math.random() *10 > 5 ? 4:2;
 }
 
 
-//-----------------------------------------------
+
 function createPosition(table){
 	var x = Math.floor(Math.random() *4);
 	var y = Math.floor(Math.random() *4);
 	var i = 0;
-	while(i < 100){
+	while(i < 300){
 		if(table[x][y] === 0)
 			return {x:x, y:y};
 		x = Math.floor(Math.random() *4);
@@ -77,7 +74,7 @@ function createPosition(table){
 	return false;
 }
 
-//-----------------------------------------------
+
 function showNumber(table){
 	$('.fr_cell').remove();
 	for(var i = 0; i < 4; i++){
@@ -103,7 +100,7 @@ function showNumber(table){
 	}
 }
 
-//-------------------------------------------
+
 function getBackColor(number){
 	switch(number){
 		case 2: return '#EEE4DA'; break;
@@ -121,7 +118,7 @@ function getBackColor(number){
 	}
 }
 
-//------------------------------------------
+
 function getTextColor(number){
 	if(number <= 4)
 		return '#665C52';
@@ -129,12 +126,12 @@ function getTextColor(number){
 	return '#FFF';
 }
 
-//------------------------------------------
+
 function getTop(i , j){
 	return i*110 + 10;
 }
 
-//------------------------------------------
+
 function getLeft(i, j){
 	return j*110 + 10;
 }
@@ -210,23 +207,3 @@ function getKeyDowm(e){
 
 document.onkeydown = getKeyDowm;
 
-// function hasSpace(){
-// 	for(var i = 0; i < 4; i++){
-// 		for(var j = 0; j < 4; j++){
-// 			if(bk_table[i][j] === 0)
-// 				return true;
-// 		}
-// 	}
-
-// 	return false;
-// }
-
-
-
-// function canMoveLeft(){
-// 	for(var i = 0; i < 4; i++){
-// 		for(var j = 0; j < 4; j++){
-			
-// 		}
-// 	}
-// }
