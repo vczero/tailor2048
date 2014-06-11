@@ -27,6 +27,16 @@ function createUI(){
 		}
 	}
 
+	//show number
+	bk_table[1][2] = 8;
+	bk_table[2][0] = 4;
+	showNumber(bk_table);
+	console.log(bk_table);
+	
+}
+
+
+function showNumber(bk_table){
 	//fr_cell init
 	$('.fr_cell').remove();
 	for(var i = 0; i < 4; i++){
@@ -39,20 +49,42 @@ function createUI(){
 				fr_cell.css('height', '10px');
 				fr_cell.css('top', getTop(i, j) + 50);
 				fr_cell.css('left', getLeft(i, j) + 50);
-				fr_cell.css('backgroundColor', 'red');
 			}else{
 				fr_cell.css('width', '100px');
 				fr_cell.css('height', '100px');
 				fr_cell.css('top', getTop(i, j));
 				fr_cell.css('left', getLeft(i, j));
+				fr_cell.css('backgroundColor', getBackColor(bk_table[i][j])); //设置背景色
+				fr_cell.css('color', getTextColor(bk_table[i][j])); //设置文字颜色
+				fr_cell.text(bk_table[i][j]);
 			}
 		}
 	}
 }
 
 
+function getBackColor(number){
+	switch(number){
+		case 2: return '#EEE4DA'; break;
+		case 4: return '#EEE4DA'; break;
+		case 8: return '#F3B079'; break;
+		case 16: return '#EB8E53'; break;
+		case 32: return '#FB795F'; break;
+		case 64: return '#EB573B'; break;
+		case 128: return '#00C6E5'; break;
+		case 256: return '#EDCA62'; break;
+		case 512: return '#FCD209'; break;
+		case 1024: return '#E12D2D'; break;
+		case 2048: return '#4CB649'; break;
+	}
+}
 
+function getTextColor(number){
+	if(number <= 4)
+		return '#665C52';
 
+	return '#FFF';
+}
 
 function getTop(i , j){
 	return i*110 + 10;
