@@ -31,19 +31,19 @@ function createUI(){
 	bk_table[1][2] = 8;
 	bk_table[2][0] = 4;
 	showNumber(bk_table);
-	console.log(bk_table);
 	
 }
 
 
 function showNumber(bk_table){
+	console.log(bk_table);
 	//fr_cell init
 	$('.fr_cell').remove();
 	for(var i = 0; i < 4; i++){
 		for(var j = 0; j < 4; j++){
 			var fr_cell_str = '<div class="fr_cell" id=fr_cell_' + i + '_' + j +'>' + '</div>'; 
 			$('#main_ui_cell').append(fr_cell_str);
-			var fr_cell = $('#fr_cell'+ i + '_' + j);
+			var fr_cell = $('#fr_cell_'+ i + '_' + j);
 			if(bk_table[i][j] == 0){
 				fr_cell.css('width', '10px');
 				fr_cell.css('height', '10px');
@@ -76,6 +76,7 @@ function getBackColor(number){
 		case 512: return '#FCD209'; break;
 		case 1024: return '#E12D2D'; break;
 		case 2048: return '#4CB649'; break;
+		default: break;
 	}
 }
 
