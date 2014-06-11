@@ -9,6 +9,7 @@ $(function(){
 
 
 var bk_table = [];
+var myScore = 0;
 function play(){
 	createUI();
 	initNumber(bk_table);
@@ -148,11 +149,13 @@ function getKeyDowm(e){
 		 		for(var j = 3; j > 0; j--){
 		 			if(bk_table[i][j-1] === 0 || (bk_table[i][j] === bk_table[i][j-1])){
 		 				bk_table[i][j-1] = bk_table[i][j] + bk_table[i][j-1];
+		 				myScore = myScore + bk_table[i][j-1];
 		 				bk_table[i][j] = 0;
 		 			}
 		 		}
 		 	}
 		 	//生成新的数字和UI
+		 	$('#my_score').text(myScore);
 		 	initNumber(bk_table);
 		 	break;
 		case 38:
@@ -162,10 +165,12 @@ function getKeyDowm(e){
 		 		for(var i = 3; i > 0 ; i--){
 			 		if(bk_table[i-1][j] === 0 || (bk_table[i][j] === bk_table[i-1][j])){
 			 			bk_table[i-1][j] = bk_table[i][j] + bk_table[i-1][j];
+			 			myScore = myScore + bk_table[i-1][j];
 			 			bk_table[i][j] = 0;
 			 		}
 		 		}
 		 	}
+		 	$('#my_score').text(myScore);
 		 	initNumber(bk_table);
 		 	break;
 		case 39: 
@@ -175,11 +180,13 @@ function getKeyDowm(e){
 		 		for(var j = 0; j < 3; j++){
 		 			if(bk_table[i][j+1] === 0 || (bk_table[i][j] === bk_table[i][j+1])){
 		 				bk_table[i][j+1] = bk_table[i][j] + bk_table[i][j+1];
+		 				myScore = myScore + bk_table[i][j+1];
 		 				bk_table[i][j] = 0;
 		 			}
 		 		}
 		 	}
 		 	//生成新的数字和UI
+		 	$('#my_score').text(myScore);
 		 	initNumber(bk_table);
 		 	break;
 		case 40: 
@@ -188,10 +195,12 @@ function getKeyDowm(e){
 		 		for(var i = 0; i < 3 ; i++){
 			 		if(bk_table[i+1][j] === 0 || (bk_table[i][j] === bk_table[i+1][j])){
 			 			bk_table[i+1][j] = bk_table[i][j] + bk_table[i+1][j];
+			 			myScore = myScore + bk_table[i+1][j];
 			 			bk_table[i][j] = 0;
 			 		}
 		 		}
 		 	}
+		 	$('#my_score').text(myScore);
 		 	initNumber(bk_table);
 			break;
 		default: 
