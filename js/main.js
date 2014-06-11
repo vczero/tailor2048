@@ -1,19 +1,17 @@
 
 $(function(){
 	play();
+	$('#play_game').click(function(){
+		play();
+	});
 });
+
+
 
 var bk_table = [];
 function play(){
-	//初始化UI
 	createUI();
-	//初始化随机number
 	initNumber(bk_table);
-	//移动随机数
-	//合并碰撞
-	//检测add
-	//终止条件
-
 }
 
 //初始化界面
@@ -28,8 +26,6 @@ function createUI(){
 			bk_cell.css('left', getLeft(i, j));
 		}
 	}
-	// bk_table[1][2]=8;
-	// showNumber(bk_table);	
 }
 
 //点击paly，产生随机数，展示随机数
@@ -147,10 +143,9 @@ function getKeyDowm(e){
 	switch(e.which){
 		case 37:
 			//left
-		 	//整体向左移 并合并相同的数字
+		 	//整体向左移 并合并相同的数字，i不变
 		 	for(var i = 0; i < 4; i++){
 		 		for(var j = 3; j > 0; j--){
-		 			console.log(j);
 		 			if(bk_table[i][j-1] === 0 || (bk_table[i][j] === bk_table[i][j-1])){
 		 				bk_table[i][j-1] = bk_table[i][j] + bk_table[i][j-1];
 		 				bk_table[i][j] = 0;
@@ -162,14 +157,22 @@ function getKeyDowm(e){
 		 	break;
 		case 38:
 			//top
-		 	console.log('top');
+		 	//j = 0不移，其余都移动 j不变
+		 	for(var j = 0; j < 4; j++){
+		 		for(var i = 3; i > 0 ; i--){
+			 		if(bk_table[i-1][j] === 0 || (bk_table[i][j] === bk_table[i-1][j])){
+			 			bk_table[i-1][j] = bk_table[i][j] + bk_table[i-1][j];
+			 			bk_table[i][j] = 0;
+			 		}
+		 		}
+		 	}
+		 	initNumber(bk_table);
 		 	break;
 		case 39: 
 			//right
-			//整体向右移 并合并相同的数字
+			//整体向右移 并合并相同的数字，i不变
 		 	for(var i = 0; i < 4; i++){
 		 		for(var j = 0; j < 3; j++){
-		 			console.log(j);
 		 			if(bk_table[i][j+1] === 0 || (bk_table[i][j] === bk_table[i][j+1])){
 		 				bk_table[i][j+1] = bk_table[i][j] + bk_table[i][j+1];
 		 				bk_table[i][j] = 0;
@@ -178,11 +181,18 @@ function getKeyDowm(e){
 		 	}
 		 	//生成新的数字和UI
 		 	initNumber(bk_table);
-		 	console.log('right');
 		 	break;
 		case 40: 
 			//bottom
-			console.log('bottom');
+			for(var j = 0; j < 4; j++){
+		 		for(var i = 0; i < 3 ; i++){
+			 		if(bk_table[i+1][j] === 0 || (bk_table[i][j] === bk_table[i+1][j])){
+			 			bk_table[i+1][j] = bk_table[i][j] + bk_table[i+1][j];
+			 			bk_table[i][j] = 0;
+			 		}
+		 		}
+		 	}
+		 	initNumber(bk_table);
 			break;
 		default: 
 			break;
@@ -191,23 +201,23 @@ function getKeyDowm(e){
 
 document.onkeydown = getKeyDowm;
 
-function hasSpace(){
-	for(var i = 0; i < 4; i++){
-		for(var j = 0; j < 4; j++){
-			if(bk_table[i][j] === 0)
-				return true;
-		}
-	}
+// function hasSpace(){
+// 	for(var i = 0; i < 4; i++){
+// 		for(var j = 0; j < 4; j++){
+// 			if(bk_table[i][j] === 0)
+// 				return true;
+// 		}
+// 	}
 
-	return false;
-}
+// 	return false;
+// }
 
 
 
-function canMoveLeft(){
-	for(var i = 0; i < 4; i++){
-		for(var j = 0; j < 4; j++){
+// function canMoveLeft(){
+// 	for(var i = 0; i < 4; i++){
+// 		for(var j = 0; j < 4; j++){
 			
-		}
-	}
-}
+// 		}
+// 	}
+// }
