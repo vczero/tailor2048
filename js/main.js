@@ -8,13 +8,15 @@ function play(){
 	//初始化UI
 	createUI();
 	//初始化随机number
+	initNumber(bk_table);
 	//移动随机数
 	//合并碰撞
 	//检测add
 	//终止条件
+
 }
 
-
+//初始化界面
 function createUI(){
 	//bk_cell init
 	for(var i = 0; i < 4; i++){
@@ -26,25 +28,67 @@ function createUI(){
 			bk_cell.css('left', getLeft(i, j));
 		}
 	}
+	// bk_table[1][2]=8;
+	// showNumber(bk_table);	
+}
 
-	//show number
-	bk_table[1][2] = 8;
-	bk_table[2][0] = 4;
+//点击paly，产生随机数，展示随机数
+function initNumber(bk_table){
+	var xy1 = createPosition(bk_table);
+	var number1 = createNumber();
+
+	var xy2 = createPosition(bk_table);
+	var number2 = createNumber();
+
+	bk_table[xy1.x][xy1.y] = number1;
+	bk_table[xy2.x][xy2.y] = number2;
+
 	showNumber(bk_table);
-	
 }
 
 
-function showNumber(bk_table){
-	console.log(bk_table);
-	//fr_cell init
+function moveNumber(){
+
+}
+
+//------------------------------------------------
+function createNumber(){
+	return Math.random() *10 > 5 ? 4:2;
+}
+
+
+//-----------------------------------------------
+function createPosition(table){
+	var x = Math.floor(Math.random() *4);
+	var y = Math.floor(Math.random() *4);
+	var i = 0;
+	while(i < 100){
+		if(table[x][y] === 0)
+			return {x:x, y:y};
+		x = Math.floor(Math.random() *4);
+		y = Math.floor(Math.random() *4);
+		i++;
+	}
+
+	for(i = 0; i < 4; i++){
+		for(var j = 0; j < 4; j++){
+			if(table[i][j] === 0)
+				return {x:i, y:j};
+		}
+	}
+
+	return false;
+}
+
+//-----------------------------------------------
+function showNumber(table){
 	$('.fr_cell').remove();
 	for(var i = 0; i < 4; i++){
 		for(var j = 0; j < 4; j++){
 			var fr_cell_str = '<div class="fr_cell" id=fr_cell_' + i + '_' + j +'>' + '</div>'; 
 			$('#main_ui_cell').append(fr_cell_str);
 			var fr_cell = $('#fr_cell_'+ i + '_' + j);
-			if(bk_table[i][j] == 0){
+			if(table[i][j] == 0){
 				fr_cell.css('width', '10px');
 				fr_cell.css('height', '10px');
 				fr_cell.css('top', getTop(i, j) + 50);
@@ -54,15 +98,15 @@ function showNumber(bk_table){
 				fr_cell.css('height', '100px');
 				fr_cell.css('top', getTop(i, j));
 				fr_cell.css('left', getLeft(i, j));
-				fr_cell.css('backgroundColor', getBackColor(bk_table[i][j])); //设置背景色
-				fr_cell.css('color', getTextColor(bk_table[i][j])); //设置文字颜色
-				fr_cell.text(bk_table[i][j]);
+				fr_cell.css('backgroundColor', getBackColor(table[i][j])); //设置背景色
+				fr_cell.css('color', getTextColor(table[i][j])); //设置文字颜色
+				fr_cell.text(table[i][j]);
 			}
 		}
 	}
 }
 
-
+//-------------------------------------------
 function getBackColor(number){
 	switch(number){
 		case 2: return '#EEE4DA'; break;
@@ -80,6 +124,7 @@ function getBackColor(number){
 	}
 }
 
+//------------------------------------------
 function getTextColor(number){
 	if(number <= 4)
 		return '#665C52';
@@ -87,10 +132,82 @@ function getTextColor(number){
 	return '#FFF';
 }
 
+//------------------------------------------
 function getTop(i , j){
 	return i*110 + 10;
 }
 
+//------------------------------------------
 function getLeft(i, j){
 	return j*110 + 10;
+}
+
+
+function getKeyDowm(e){
+	switch(e.which){
+		case 37:
+			//left
+		 	//整体向左移 并合并相同的数字
+		 	for(var i = 0; i < 4; i++){
+		 		for(var j = 3; j > 0; j--){
+		 			console.log(j);
+		 			if(bk_table[i][j-1] === 0 || (bk_table[i][j] === bk_table[i][j-1])){
+		 				bk_table[i][j-1] = bk_table[i][j] + bk_table[i][j-1];
+		 				bk_table[i][j] = 0;
+		 			}
+		 		}
+		 	}
+		 	//生成新的数字和UI
+		 	initNumber(bk_table);
+		 	break;
+		case 38:
+			//top
+		 	console.log('top');
+		 	break;
+		case 39: 
+			//right
+			//整体向右移 并合并相同的数字
+		 	for(var i = 0; i < 4; i++){
+		 		for(var j = 0; j < 3; j++){
+		 			console.log(j);
+		 			if(bk_table[i][j+1] === 0 || (bk_table[i][j] === bk_table[i][j+1])){
+		 				bk_table[i][j+1] = bk_table[i][j] + bk_table[i][j+1];
+		 				bk_table[i][j] = 0;
+		 			}
+		 		}
+		 	}
+		 	//生成新的数字和UI
+		 	initNumber(bk_table);
+		 	console.log('right');
+		 	break;
+		case 40: 
+			//bottom
+			console.log('bottom');
+			break;
+		default: 
+			break;
+	}
+}
+
+document.onkeydown = getKeyDowm;
+
+function hasSpace(){
+	for(var i = 0; i < 4; i++){
+		for(var j = 0; j < 4; j++){
+			if(bk_table[i][j] === 0)
+				return true;
+		}
+	}
+
+	return false;
+}
+
+
+
+function canMoveLeft(){
+	for(var i = 0; i < 4; i++){
+		for(var j = 0; j < 4; j++){
+			
+		}
+	}
 }
