@@ -85,13 +85,23 @@ var T2048 = function(){
 					fr_cell.css('top', getTop(i, j) + 50);
 					fr_cell.css('left', getLeft(i, j) + 50);
 				}else{
-					fr_cell.css('width', '100px');
-					fr_cell.css('height', '100px');
-					fr_cell.css('top', getTop(i, j));
-					fr_cell.css('left', getLeft(i, j));
+
+					fr_cell.text(table[i][j]);
 					fr_cell.css('backgroundColor', getBackColor(table[i][j])); //设置背景色
 					fr_cell.css('color', getTextColor(table[i][j])); //设置文字颜色
-					fr_cell.text(table[i][j]);
+
+					fr_cell.animate({
+						width: '100px',
+						height: '100px',
+						top: getTop(i, j),
+						left: getLeft(i, j)
+					},80);
+					
+					// fr_cell.css('width', '100px');
+					// fr_cell.css('height', '100px');
+					// fr_cell.css('top', getTop(i, j));
+					// fr_cell.css('left', getLeft(i, j));
+					// fr_cell.text(table[i][j]);
 				}
 			}
 		}
