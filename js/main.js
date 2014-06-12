@@ -3,10 +3,19 @@ $(function(){
 
 	t2048 = new T2048();
 	t2048.play();
+
 	$('#play_game').click(function(){
+		t2048 = new T2048();
 		t2048.play();
 	});
 
+	$('#show_game_over').hide();
+
+	$('#close_div').click(function(){
+		$('#show_game_over').hide();
+		t2048 = new T2048();
+		t2048.play();
+	});
 });
 
 
@@ -86,22 +95,14 @@ var T2048 = function(){
 					fr_cell.css('left', getLeft(i, j) + 50);
 				}else{
 
-					fr_cell.text(table[i][j]);
+			
 					fr_cell.css('backgroundColor', getBackColor(table[i][j])); //设置背景色
 					fr_cell.css('color', getTextColor(table[i][j])); //设置文字颜色
-
-					fr_cell.animate({
-						width: '100px',
-						height: '100px',
-						top: getTop(i, j),
-						left: getLeft(i, j)
-					},80);
-					
-					// fr_cell.css('width', '100px');
-					// fr_cell.css('height', '100px');
-					// fr_cell.css('top', getTop(i, j));
-					// fr_cell.css('left', getLeft(i, j));
-					// fr_cell.text(table[i][j]);
+					fr_cell.css('width', '100px');
+					fr_cell.css('height', '100px');
+					fr_cell.css('top', getTop(i, j));
+					fr_cell.css('left', getLeft(i, j));
+					fr_cell.text(table[i][j]);
 				}
 			}
 		}
@@ -247,7 +248,8 @@ var T2048 = function(){
 					break;
 			}
 		}else{
-			alert('游戏结束');
+			$('#show_game_over').show();
+			document.onkeydown = null;
 		}
 	}
 
@@ -259,8 +261,7 @@ var T2048 = function(){
 			myScore = 0;
 			$('#my_score').text(0);
 			createUI();
-			initNumber(bk_table);
-			
+			initNumber(bk_table);			
 		}
 	};
 

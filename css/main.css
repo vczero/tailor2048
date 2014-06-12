@@ -93,15 +93,65 @@
 	right:20px;
 	top:20px;
 	font-size:13px;
-	color:#665C52;
 	font-weight:bold;	
 }
 
 #author a{
 	text-decoration: none;
+	color:blue;
+
 }
 
 #author a:hover{
 	text-decoration: none;
 }
 
+
+#show_game_over{
+	position:absolute;
+	top:150px;
+	left:50px;
+	width:400px;
+	height:200px;
+	border:1px solid #EBECEF;
+	background-color:#FFF;
+	opacity:0.8;
+}
+
+#close_div{
+	width:30px;
+	height:30px;
+	float:right;
+}
+
+#close_div img{
+	width:30px;
+	height:30px;
+}
+
+#close_div:hover{
+	cursor: pointer;
+}
+
+#cry_girl{
+	width:140px;
+	margin:50px auto;
+}
+
+#game_game{
+	position: absolute;
+	left: 40px;
+	top: 90px;
+	font-size: 30px;
+	font-family: 'consolas';
+	color: #A6E22A;
+}
+
+#game_over{
+	position: absolute;
+	right: 40px;
+	top: 90px;
+	font-size: 30px;
+	font-family: 'consolas';
+	color: #A6E22A;
+}
