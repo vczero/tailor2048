@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+	<title>2048 webApp</title>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalbble=0" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.2.css">
+		<script type="text/javascript" src="js/jquery2.1.1.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile-1.4.2.js"></script>
+	</head>
+
+<body> 
+	<section data-role="page" id="page1" data-theme="a">
+		<header data-role="header" data-theme="b">页头1</header>
+		<article data-role="content">
+			<div>内容1</div>
+			<div><a href="#page2" data-transition="pop">切换到第2个页面</a></div>
+		</article>
+		<footer data-role="footer" data-theme="a">页脚</footer>
+	</section>
+
+	<section data-role="page" id="page2">
+		<header data-role="header">页头2</header>
+		<article data-role="content">
+			<div>内容2</div>
+			<div><a href="#page3" data-transition="slide">切换到第3个页面</a></div>
+		</article>
+		<footer data-role="footer">页脚</footer>
+	</section>
+
+	<section data-role="page" id="page3" data-fullscreen="true">
+		<header data-role="header">页头3</header>
+		<article data-role="content">
+			<div>内容3</div>
+			<div><a href="#page1" data-transition="slidedown">切换到第1个页面</a></div>
+			<a  data-role="button" data-icon="search" data-iconpos="right" data-inline="true" >按钮</a>
+			<div data-role="page" data-add-back-btn="true" data-back-btn-text="go"></div>
+		</article>
+		<footer data-role="footer">
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="#" data-role="button" data-icon="delete">删除</a>
+				<a href="#" data-role="button" data-icon="plus">添加</a>
+				<a href="#" data-role="button" data-icon="arrow-u">向上</a>
+				<a href="#" data-role="button" data-icon="arrow-d">向下</a>
+			</div>
+		</footer>
+	</section>
+</body>
+</html>
